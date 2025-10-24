@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="cat.jpg">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #FFe9f4;
+            color: rgb(18, 41, 20);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Левое меню */
+        .sidebar {
+            width: 200px;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 30px;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+        }
+
+        .sidebar button {
+            width: 160px;
+            padding: 12px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: none;
+            background-color: #89a890;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar button:hover {
+            background-color: #99ccff;
+            color: #000;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 { margin-bottom: 10px; }
+        p { margin-bottom: 20px; }
+
+        .info-text {
+            display: none;
+            margin-top: 15px;
+            font-size: 18px;
+            color: #0b2e14;
+            max-width: 700px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #27412d;
+        }
+
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .fullscreen-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .fullscreen-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        /* Форма */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        input, textarea {
+            width: 300px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .submit-btn {
+            background-color: #89a890;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #99ccff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Левое меню -->
+    <div class="sidebar">
+        <button onclick="showText('text1')">Hjem</button>
+        <button onclick="showText('text2')">Kontakt</button>
+        <button onclick="showText('text3')">Mine verk</button>
+        <button onclick="showText('text4')">Melding</button>
+    </div>
+
+    <!-- Основной контент -->
+    <main id="content">
+
+        <div id="text1" class="info-text">
+            <h1>Hei, jeg heter Anastasiia</h1>
+            <p>Denne siden forteller om meg og hva jeg jobber med.</p>
+        </div>
+
+        <div id="text2" class="info-text">
+            <p>
+                Number: 925 43 763.<br>
+                Gmail address: manlonn.0@gmail.com.<br>
+                Jeg er elev ved Haugaland VGS, og jeg går i IMC-klassen.
+            </p>
+        </div>
+
+        <div id="text3" class="info-text">
+            <p>Mine verk:</p>
+            <div class="gallery">
+                <img src="Screenshot 2025-10-22 132114.png" alt="verk 1">
+                <img src="image.png" alt="verk 2">
+                <img src="Screenshot 2025-10-23 085548.png" alt="verk 3">
+                <img src="Screenshot 2025-10-23 090019.png" alt="verk 4">
+                <img src="Screenshot 2025-10-23 090509.png" alt="verk 5">
+                <img src="6.png" alt="verk 6">
+            </div>
+        </div>  
+
+        <div id="text4" class="info-text">
+            <h2>Send meg en melding</h2>
+            <form id="contactForm">
+                <input type="text" placeholder="Navn" required>
+                <input type="email" placeholder="E-post" required>
+                <textarea placeholder="Skriv meldingen din..." required></textarea>
+                <button type="submit" class="submit-btn">Send</button>
+            </form>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Min Portfolio</p>
+        </footer>
+    </main>
+
+    <!-- Фуллскрин изображение -->
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+        <img src="" alt="Fullscreen Image">
+    </div>
+
+    <script>
+        // Показ нужного блока и скрытие остальных
+        function showText(id) {
+            document.querySelectorAll('.info-text').forEach(el => el.style.display = 'none');
+            const block = document.getElementById(id);
+            if (block) block.style.display = 'block';
+        }
+
+        // Смена цвета текста
+        const colors = ['darkblue', 'purple', 'darkred'];
+        let colorIndex = 0;
+        function changeTextColor() {
+            const content = document.getElementById('content');
+            content.style.color = colors[colorIndex];
+            colorIndex = (colorIndex + 1) % colors.length;
+        }
+        setInterval(changeTextColor, 2000);
+
+        // Фуллскрин изображение
+        const overlay = document.getElementById('fullscreenOverlay');
+        const overlayImg = overlay.querySelector('img');
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.addEventListener('click', () => {
+                overlayImg.src = img.src;
+                overlay.classList.add('active');
+            });
+        });
+        overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('active'); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') overlay.classList.remove('active'); });
+
+        // Всплывающее окно после отправки формы
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            alert("Takk for meldingen!😊");
+            form.reset();
+        });
+    </script>
+</body>
+</html>
